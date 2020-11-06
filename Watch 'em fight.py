@@ -1,4 +1,5 @@
 import random
+from abc import ABC, abstractmethod
 
 
 class Player:
@@ -33,12 +34,16 @@ class User(Player):
         return index
 
 
-class Robot(Player):
+class Robot(ABC, Player):
     def move(self, field):
         print(f'Making move level "{self.__class__.__name__.lower()}"')
         coords_1 = self.coordinates(field)
         field[coords_1] = self.mark
         return field
+
+    @abstractmethod
+    def coordinates(self, field):
+        pass
 
 
 class Easy(Robot):
