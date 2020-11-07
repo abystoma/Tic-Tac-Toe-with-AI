@@ -55,6 +55,69 @@ class Easy(Robot):
         return coords
 
 
+class Medium(Robot):
+    def coordinates(self, field):
+        coord = self.two_row_check(field)
+        if not coord:
+            coord = self.random_coord(field)
+        return coord
+
+    def random_coord(self, field):
+        coords = Game.coordinate_conversion[random.randint(
+            1, 3), random.randint(1, 3)]
+        if field[coords] != " ":
+            return self.coordinates(field)
+        return coords
+
+    def two_row_check(self, field):
+        transposed_field = [i for i in field.values()]
+
+        if Game.mark[0] == self.mark:
+            mark_list = Game.mark
+        else:
+            mark_list = Game.mark.copy()
+            mark_list.reverse()
+        column = []
+
+        column.append(transposed_field[0:9:3])
+        column.append(transposed_field[1:9:3])
+        column.append(transposed_field[2:9:3])
+
+        row = []
+
+        row.append(transposed_field[0:3])
+        row.append(transposed_field[3:6])
+        row.append(transposed_field[6:9])
+
+        for mark in mark_list:
+            # Checking column of field for 2-in-row
+            for n, col in enumerate(column):
+                if col.count(mark) == 2 and col.count(' '):
+                    print(
+                        col, Game.coordinate_conversion[n+1, col[::-1].index(' ')+1])
+                    return Game.coordinate_conversion[n+1, col[::-1].index(' ')+1]
+            # Checking row of field for 2-in-row
+            for m, r in enumerate(row[::-1]):
+                if r.count(mark) == 2 and r.count(' '):
+                    print(row, Game.coordinate_conversion[r.index(' ')+1, m+1])
+                    return Game.coordinate_conversion[r.index(' ')+1, m+1]
+
+            main_diagonal = [transposed_field[0],
+                             transposed_field[4], transposed_field[8]]
+            side_diagonal = [transposed_field[2],
+                             transposed_field[4], transposed_field[6]]
+
+            if main_diagonal.count(mark) == 2 and main_diagonal.count(' '):
+                index = main_diagonal.index(' ')
+                return Game.coordinate_conversion[1+index, 3-index]
+
+            if side_diagonal.count(mark) == 2 and side_diagonal.count(' '):
+                index = side_diagonal.index(' ')
+                return Game.coordinate_conversion[3-index, 3-index]
+
+        return None
+
+
 class Game:
 
     board = {1: " ", 2: " ", 3: " ",
@@ -65,7 +128,8 @@ class Game:
                              (1, 2): 4, (2, 2): 5, (3, 2): 6,
                              (1, 1): 7, (2, 1): 8, (3, 1): 9}
 
-    command = {'user': User, 'easy': Easy, 'start': None, 'exit': exit}
+    command = {'user': User, 'easy': Easy,
+               'medium': Medium, 'start': None, 'exit': exit}
     mark = ['X', 'O']
 
     def __init__(self):
@@ -76,8 +140,8 @@ class Game:
 
     def __str__(self):
         result = f"---------\n" \
-                 f"| {self.field[1]} {self.field[2]} {self.field[3]} |\n" \
-                 f"| {self.field[4]} {self.field[5]} {self.field[6]} |\n" \
+            f"| {self.field[1]} {self.field[2]} {self.field[3]} |\n" \
+            f"| {self.field[4]} {self.field[5]} {self.field[6]} |\n" \
                  f"| {self.field[7]} {self.field[8]} {self.field[9]} |\n" \
                  f"---------"
         return result
@@ -102,7 +166,7 @@ class Game:
                 if Game.checker(self.field):
                     return None
 
-    @staticmethod
+    @ staticmethod
     def checker(field):
         result = ''
         for check in Game.mark:
