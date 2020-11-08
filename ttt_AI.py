@@ -63,6 +63,11 @@ class Medium(Robot):
         return coord
 
     def two_row_check(self, fields):
+        if Game.mark[0] == self.mark:
+            mark_list = Game.mark
+        else:
+            mark_list = Game.mark.copy()
+            mark_list.reverse()
 
         cols = [fields[i::3] for i in range(3)]
 
@@ -71,31 +76,29 @@ class Medium(Robot):
         main_diagonal = [fields[0], fields[4], fields[8]]
         side_diagonal = [fields[2], fields[4], fields[6]]
 
-        for index, col in enumerate(cols):
-            if col.count(self.opp_mark) == 2 and col.count(' '):
-                return 3 * col.index(" ") + index
-        for index, row in enumerate(rows):
-            if row.count(self.opp_mark) == 2 and row.count(' '):
-                return 3 * (index) + row.index(" ")
+        for mark in mark_list:
+            for index, col in enumerate(cols):
+                if col.count(mark) == 2 and col.count(' '):
+                    return 3 * col.index(" ") + index
+            for index, row in enumerate(rows):
+                if row.count(mark) == 2 and row.count(' '):
+                    return 3 * (index) + row.index(" ")
 
-        if main_diagonal.count(self.opp_mark) == 2 and main_diagonal.count(' '):
-            index = main_diagonal.index(' ')
-            return (3 * index) + index
+            if main_diagonal.count(mark) == 2 and main_diagonal.count(' '):
+                index = main_diagonal.index(' ')
+                return (3 * index) + index
 
-        if side_diagonal.count(self.opp_mark) == 2 and side_diagonal.count(' '):
-            index = side_diagonal.index(' ')
-            return (index + 1) * 2
+            if side_diagonal.count(mark) == 2 and side_diagonal.count(' '):
+                index = side_diagonal.index(' ')
+                return (index + 1) * 2
         return None
 
 
 class Game:
 
-    board = [" ", " ", " ",
-             " ", " ", " ",
-             " ", " ", " "]
+    board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
-    command = {'user': User, 'easy': Easy,
-               'medium': Medium}
+    command = {'user': User, 'easy': Easy, 'medium': Medium}
     mark = ['X', 'O']
 
     def __init__(self):
