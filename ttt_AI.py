@@ -129,7 +129,7 @@ class Game:
                              (1, 1): 7, (2, 1): 8, (3, 1): 9}
 
     command = {'user': User, 'easy': Easy,
-               'medium': Medium, 'start': None, 'exit': exit}
+               'medium': Medium}
     mark = ['X', 'O']
 
     def __init__(self):
@@ -142,8 +142,8 @@ class Game:
         result = f"---------\n" \
             f"| {self.field[1]} {self.field[2]} {self.field[3]} |\n" \
             f"| {self.field[4]} {self.field[5]} {self.field[6]} |\n" \
-                 f"| {self.field[7]} {self.field[8]} {self.field[9]} |\n" \
-                 f"---------"
+            f"| {self.field[7]} {self.field[8]} {self.field[9]} |\n" \
+            f"---------"
         return result
 
     def start(self):
@@ -154,6 +154,9 @@ class Game:
             if params[1] in Game.command and params[2] in Game.command:
                 self.first = Game.command[params[1]]('X', 'O')
                 self.second = Game.command[params[2]]('O', 'X')
+            else:
+                print("Bad parameters!")
+                self.start()
         else:
             print("Bad parameters!")
             self.start()
