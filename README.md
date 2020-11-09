@@ -7,4 +7,12 @@
 <img src= "https://i.imgur.com/8aMobUL.png" alt="Logo Here!" width="150px" height="150px" />
 </div>
 
+## Commands
+| Syntax | Description |
+| ----------- | ----------- |
+| Header | Title |
+| Paragraph | Text |
 
+## How to play
+
+### Coordinate System
