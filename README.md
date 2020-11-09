@@ -1,5 +1,5 @@
-#Tic-Tac-Toe-with-AI
+# Tic-Tac-Toe-with-AI
 
-![alt text](https://i.imgur.com/8aMobUL.png "Logo Title Text 1")
+<img src= "https://i.imgur.com/8aMobUL.png" alt="Logo Here!" width="50px" height="50px"/>
 
 
