@@ -6,8 +6,8 @@
 <img src= "https://i.imgur.com/8aMobUL.png" alt="Logo Here!" width="150px" height="150px" />
 </div>
 
-##What is this?
-#####This is CLI based simple tic tac toe game that you can play with yourself(😏) or with a clever AI. Just put the commands and flags and your are good to go.
+## What is this?
+##### This is CLI based simple tic tac toe game that you can play with yourself(😏) or with a clever AI. Just put the commands and flags and your are good to go.
 
 ## Commands:
 | Commands | Description |
@@ -15,7 +15,7 @@
 | start |  Start your game |
 | exit | Quit game |
 
-####Usage: start *user* *flag* <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; start *flag* *user*
+#### Usage: start *user* *flag* <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; start *flag* *user*
 | Flags | Description |
 | ----------- | ----------- |
 | user | Player(HUMAN) |
