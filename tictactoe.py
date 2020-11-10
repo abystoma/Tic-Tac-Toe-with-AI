@@ -19,17 +19,22 @@ class User(Player):
 
     def coordinates(self, fields):
         try:
-            coord = int(input("Enter the coordinates:")) - 1
+            prompt = input("Enter the coordinates:")
+            coord = prompt if prompt.isalpha() else int(prompt) - 1
             if coord > 8 and coord < 0:
                 print("Coordinates should be from 1 to 9!")
                 return self.coordinates(fields)
             if fields[coord] in Game.mark:
                 print("This cell is occupied! Choose another one!")
                 return self.coordinates(fields)
+
             return coord
-        except:
-            print("You should enter numbers!")
-            return self.coordinates(fields)
+        except TypeError:
+            if coord == "quit":
+                Game().start()
+            else:
+                print("You should enter numbers!")
+                return self.coordinates(fields)
 
 #abstract sublass of 3. and superclass of 3b
 class Robot(ABC, Player):
