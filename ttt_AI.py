@@ -18,7 +18,7 @@ class User(Player):
     def coordinates(self, fields):
         try:
             prompt = input("Enter the coordinates:")
-            coord = "quit" if prompt == "quit" else int(prompt) - 1
+            coord = prompt if prompt.isalpha() else int(prompt) - 1
             if coord > 8 and coord < 0:
                 print("Coordinates should be from 1 to 9!")
                 return self.coordinates(fields)
