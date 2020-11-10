@@ -13,6 +13,7 @@
 | Commands | Description |
 | ----------- | ----------- |
 | start |  Start your game |
+| quit | Return to main menu |
 | exit | Quit game |
 
 #### Usage: start *user* *flag* <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; start *flag* *user*
@@ -25,7 +26,7 @@
 
 
 ## How to play
-A promt will apear before you i.e. ``input: `` , Then you have to put your commands. <br> Use the ``start`` command to play or ``exit`` to stop right away. [*Note that you can't quit once the game starts*]. <br> Start your game by choosing the *flags* and Here are some examples: <br>
+A promt will apear before you i.e. ``input: `` , Then you have to put your commands. <br> Use the ``start`` command to play or ``exit`` to stop right away. [*Note that you if you want to quit in the middle of the game and return to main menu you can use the ``quit`` command.*] <br> Start your game by choosing the *flags* and Here are some examples: <br>
 
 ``start user user``
 ``start user medium``
